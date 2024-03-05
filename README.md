@@ -1,3 +1,3 @@
-start project for Big Data Tools and Techniques
+starter project for Big Data Tools and Techniques
 
 run project.py
