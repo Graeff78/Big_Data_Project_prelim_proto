@@ -1,5 +1,4 @@
 from db_config import get_redis_connection
-import redis
 import json
 
 """ 
@@ -17,7 +16,6 @@ def first_query():
     keys = r.keys("movies:*")
     for key in keys:
         value = r.json().get(key)
-        #print(f"{key}: {value}\n")
         item = json.loads(value)
         print(item["title"])
     print("\n")
@@ -31,7 +29,6 @@ def second_query():
     keys = r.keys("movies:*")
     for key in keys:
         value = r.json().get(key)
-        #print(f"{key}: {value}\n")
         item = json.loads(value)
         if (item["vote_average"] > 7):
             print(item["title"]+":\t"+str(item["vote_average"]))
@@ -52,3 +49,24 @@ def third_query():
             if (genre == 878):
                 print(item["title"])
     print("\n")
+
+"""
+Query Quatro
+Aggregate search for a for the average popularity of all stored movies.
+"""
+import pandas as pd
+
+def fourth_query():
+    print("Fourth:\n\t")
+    
+    #pd.set_option('display.max_colwidth', None)
+    keys = r.keys("movies:*")
+    data = {}
+    #data = [{key} for key in keys]
+    for key in keys:
+        value = r.json().get(key)
+        data[key] = json.loads(value)
+
+    df = pd.DataFrame(data)
+    print("Average popularity of all movies:\t", df.loc['popularity'].mean())
+

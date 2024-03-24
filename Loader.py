@@ -11,7 +11,7 @@ r = get_redis_connection()
 
 """ 
 call request objects. 
-transform and load item data into redis.
+transform and load item data into redis.json.
 """ 
 def load(item):
     mov = movie(item)
