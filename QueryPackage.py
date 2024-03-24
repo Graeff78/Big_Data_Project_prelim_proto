@@ -59,10 +59,9 @@ import pandas as pd
 def fourth_query():
     print("Fourth:\n\t")
     
-    #pd.set_option('display.max_colwidth', None)
     keys = r.keys("movies:*")
     data = {}
-    #data = [{key} for key in keys]
+
     for key in keys:
         value = r.json().get(key)
         data[key] = json.loads(value)
